@@ -55,4 +55,4 @@ That's it! No more complicating setup along  the way.
 - **Backend authentication** - CORS limits the access only through our frontend app, as well as our defined API key. Hitting Postman ain't accessible as well. Although there are other implementations to further secure the backend, similar to the above reasons, the implementation is done with simplicity in mind to maintain a straightforward setup.
 
 
-##### Overall, this app was finished on approximately 10 hours. Hours don't account the pauses in-between.
+##### Overall, this app was finished on approximately 10.5 hours. Hours don't account the pauses in-between.
