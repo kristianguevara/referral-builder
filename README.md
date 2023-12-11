@@ -14,13 +14,17 @@ That's it! No more complicating setup along  the way.
 
 ## 2. Running the app simultaneously
 
-**Window 1** - On `frontend/`, run `npm run start`
+**Window 1** - On `frontend/`, run `npm start`
 
 **Window 2**
  - On `backend/`, run first `npm run build` in order to create an initial transpile
  - Then run `npm run dev` to boot the server.
 
-**Note**: The database will be automatically created when you run the backend, eliminating the need for manual configuration.
+**Note:**: The database will be automatically created when you run the backend, eliminating the need for manual configuration.
+
+**Permission Note:** In case you are dealing with directory ownership issues on your machine, ensure you own the folder by doing the following inside the `referral-builder/` folder:
+1. `sudo chown -R $(whoami) .` - This command changes the ownership of the current directory and all its subdirectories to the current user.
+2. `chmod -R 777 .` - This command changes the permissions of the current directory and all its subdirectories to allow read, write, and execute for the owner only.
 
 
 ### Additional Notes for the project
