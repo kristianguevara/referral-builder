@@ -8,10 +8,18 @@ import referralsRouter from './routers/referralsRouter';
 dotenv.config();
 const app = express();
 const port = process.env.PORT;
+const frontendUrl = process.env.FRONTEND_BASE_URL ?? "";
 
 // Setup middleware
 app.use(cors({
-  origin: process.env.FRONTEND_BASE_URL
+  origin: (origin, callback) => {
+    // Limit only to our frontend - http://localhost:3000
+    if (origin?.includes(frontendUrl)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
 }));
 app.use(bodyParser.json({limit: '5mb'}));
 
