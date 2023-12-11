@@ -4,10 +4,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { IReferralData } from '../../interfaces';
 
-interface IDeleteModalProps {
-  referral: IReferralData;
+interface IConfirmCancelModalProps {
   isModalOpen: boolean;
   setIsModalOpen: Function;
   handleConfirmation: Function;
@@ -26,8 +24,7 @@ const style = {
   p: 4,
 };
 
-const DeleteModal: React.FC<IDeleteModalProps> = ({
-  referral,
+const ConfirmCancelModal: React.FC<IConfirmCancelModalProps> = ({
   isModalOpen,
   setIsModalOpen,
   handleConfirmation,
@@ -41,32 +38,32 @@ const DeleteModal: React.FC<IDeleteModalProps> = ({
     >
       <Box sx={style}>
         <Typography variant="h4">
-          Confirm delete
+          Warning
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          You are about to delete <u>{referral.email}</u>. Do you wish to proceed?
+          You currently have answers to required fields.
         </Typography>
         <Grid container spacing={3} mt="15px">
+          <Grid item xs={6} sm={6}>
+            <Button
+              fullWidth
+              color="primary"
+              variant="contained"
+              sx={{ float: "right", mb: "20px", height:"40px" }}
+              onClick={() => handleCancel() }
+              >
+                CONTINUE FORM
+            </Button>
+          </Grid>
           <Grid item xs={6} sm={6}>
             <Button
               fullWidth
               color="inherit"
               variant="contained"
               sx={{ float: "right", mb: "20px", height:"40px" }}
-              onClick={() => handleCancel() }
+              onClick={() => handleConfirmation()}
               >
-                CANCEL
-            </Button>
-          </Grid>
-          <Grid item xs={6} sm={6}>
-            <Button
-              fullWidth
-              color="error"
-              variant="contained"
-              sx={{ float: "right", mb: "20px", height:"40px" }}
-              onClick={() => handleConfirmation(referral)}
-              >
-                DELETE REFERRAL
+                RETURN TO HOME
             </Button>
           </Grid>
         </Grid>
@@ -75,4 +72,4 @@ const DeleteModal: React.FC<IDeleteModalProps> = ({
   );
 };
 
-export default DeleteModal;
+export default ConfirmCancelModal;

@@ -52,12 +52,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getReferralList = async () => {
-      const result = await axios.get(REFERRALS_API_URL);
-      const { data } = result;
-      if (data.error) {
-        console.log("error = ", data.error)
-      } else {
-        setReferralList(data);
+      try {
+        const result = await axios.get(REFERRALS_API_URL);
+        const { data } = result;
+        if (data.error) {
+          error('Failed to fetch List. Kindly reload the page.');
+        } else {
+          setReferralList(data);
+        }
+      } catch (e) {
+        error('Failed to fetch List. Kindly reload the page.');
       }
 
       setIsLoading(false);
@@ -97,7 +101,7 @@ const Dashboard = () => {
               <TableCell align="right">{referral.email}</TableCell>
               <TableCell align="right">{referral.phone}</TableCell>
               <TableCell align="right">
-                <Tooltip title="Edit" placement="top">
+                <Tooltip title="View / Edit" placement="top">
                   <EditIcon sx={{ mr: "10px", cursor: "pointer" }} onClick={() => navigate(`/edit/${referral.id}`)}/>
                 </Tooltip>
                 <Tooltip title="Delete" placement="top">

@@ -34,7 +34,7 @@ const PreviewReferralForm: FC<IPreviewReferralFormData> = ({
 
       <Typography variant="h5" align="left" mt="15px">Address </Typography>
       <hr />
-      <Typography align="left">Home name / #: {home_name}</Typography>
+      <Typography align="left">Home name: {home_name}</Typography>
       <Typography align="left">Street: {street}</Typography>
       <Typography align="left">Suburb: {suburb}</Typography>
       <Typography align="left">State: {state}</Typography>

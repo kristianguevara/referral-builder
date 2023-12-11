@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import { toast } from 'react-toastify';
 import ReferralInputForm from "./ReferralInputForm";
 import PreviewReferralForm from "./PreviewReferralForm";
+import ConfirmCancelModal from "./ConfirmCancelModal";
 import { validateEmail, validatePhone } from "../../utils";
 import { IReferralData } from '../../interfaces';
 import { OPTIONAL_FIELDS, REFERRAL_API_URL } from "../../utils/constants";
@@ -30,6 +31,7 @@ const ReferralForm = () => {
 
   const { success, error } = toast;
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<IReferralData>({
     given_name: "",
     surname: "",
@@ -43,20 +45,30 @@ const ReferralForm = () => {
     country: "",
     avatar: ""
   });
+
+  const redirectToHome = () => {
+    setTimeout(() => {
+      navigate('/');
+    }, 2000);
+  };
   
   useEffect(() => {
     const getReferralData = async () => {
       try {
         const result = await axios.get(`${REFERRAL_API_URL}/${id}`);
         const fetchedData = result.data;
+        console.log("fetchedData = ", fetchedData)
+        if (!fetchedData) {
+          error('Referral not existing. Redirecting to home page...');
+          redirectToHome();
+          return;
+        }
 
         setFormData(fetchedData);
       } catch (e) {
         console.log(e)
         error('Failed to fetch this referral. Redirecting to home page...');
-        setTimeout(() => {
-          navigate('/');
-        }, 2000)
+        redirectToHome();
       }
 
       setIsLoading(false);
@@ -95,6 +107,19 @@ const ReferralForm = () => {
      };
   }
 
+  const displaySubmitError = (e: any) => {
+    if (e.response) {
+      const errorData = e.response.data;
+      if (errorData.error !== null && errorData.error.name === "SequelizeUniqueConstraintError") {
+        error("The email has already been taken. Kindly place a different email.");
+      } else {
+        error("You have incorrect inputs. Kindly check your fields and make sure you are putting proper values.");
+      }
+    } else {
+      error("Failed to create referral. Please try again.");
+    }
+  }
+
   const submitForm = async () => {
     setIsLoading(true);
     const { isFormValid } = areRequiredFieldsFilled();
@@ -114,7 +139,6 @@ const ReferralForm = () => {
 
     try {
       let result: AxiosResponse<any, any>;
-      const actionWord = isEditPage ? "edit" : "create";
   
       if (isEditPage) {
         result = await axios.put(REFERRAL_API_URL, formData,
@@ -135,22 +159,16 @@ const ReferralForm = () => {
       const { data } = result;
 
       if (data.error) {
+        const actionWord = isEditPage ? "edit" : "create";
         error(`Failed to ${actionWord} referral data. Please try again.`);
         return;
       }
       
+      const actionWord = isEditPage ? "edited" : "created";
       success(`Referral ${actionWord} successfully! Redirecting to home page`);
-      setTimeout(() => {
-        navigate("/");
-      }, 2000)
-    } catch (e: any) { // Keep any type
-      const errorData = e.response.data;
-      if (errorData.error && errorData.error.name === "SequelizeUniqueConstraintError") {
-        error("The email has already been taken. Kindly place a different email.");
-      } else {
-        error("Failed processing referral. Please try again.");
-      }
-      
+      redirectToHome();
+    } catch (e: any) { // Keep any type as it can be of custom error types in this endpoint
+      displaySubmitError(e);
       setIsLoading(false);
     }
   }
@@ -181,15 +199,21 @@ const ReferralForm = () => {
     };
   };
 
+
+  const handleConfirmation = async () => {
+    navigate("/");
+    setIsModalOpen(false);
+  };
+
   const confirmCancel = () => {
-    const { answeredRequiredFields } = areRequiredFieldsFilled();
-    if (answeredRequiredFields.length) {
-      const isTrue = window.confirm("You are currently answering the form. Are you sure you want to cancel?");
-      if (isTrue) navigate("/");
+    if (isEditPage) {
+      navigate("/");
       return;
     }
 
-    navigate("/");
+    const { answeredRequiredFields } = areRequiredFieldsFilled();
+    if (answeredRequiredFields.length) setIsModalOpen(true);
+    else navigate("/");
   }
 
   const { isFormValid } = areRequiredFieldsFilled();
@@ -223,6 +247,12 @@ const ReferralForm = () => {
           </Item>
         </Grid>
       </Grid>
+      <ConfirmCancelModal
+          handleConfirmation={handleConfirmation}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          handleCancel={() => setIsModalOpen(false)}
+        />
     </Box>
   );
 }

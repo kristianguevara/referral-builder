@@ -31,7 +31,7 @@ const ReferralInputForm: FC<IReferralInputFormData> = ({
     country
   } = formData;
 
-  const actionWord = isEditPage ? "EDIT" : "CREATE";
+  const actionWord = isEditPage ? "UPDATE" : "CREATE";
 
   return (
     <Box sx={{ padding: 1 }}>
@@ -108,7 +108,7 @@ const ReferralInputForm: FC<IReferralInputFormData> = ({
             required
             id="home_name"
             name="home_name"
-            label="HOME NAME OR #"
+            label="HOME NAME"
             fullWidth
             autoComplete="home_name"
             variant="outlined"
