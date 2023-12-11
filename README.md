@@ -1,6 +1,6 @@
 
 ## Welcome to the Fullstack Referral App!
-A simple CRUD app
+A simple CRUD app built in Typescript
 
 ## 1. Installation
 
@@ -26,28 +26,28 @@ That's it! No more complicating setup along  the way.
 **Frontend Terminal**
 - On `frontend/`, simply run `npm start`
 
-**Permission Note:** By any chance you are encountering `Error: EACCES: permission denied,`, ensure you own the folder by doing the following inside the `referral-builder/` folder:
+**Permission Note:** By any chance you are encountering `Error: EACCES: permission denied`, ensure you own the folder by doing the following commands inside the `referral-builder/` folder:
 1. `sudo chown -R $(whoami) .` - This command changes the ownership of the current directory and all its subdirectories to the current user.
 2. `chmod -R 777 .` - This command changes the permissions of the current directory and all its subdirectories to allow read, write, and execute for the owner only.
 
 
-**Note:**: The database will be automatically created when you run the backend, eliminating the need for manual configuration.
+**Note:** The database will be automatically created when you run the backend, eliminating the need for manual configuration.
 
 --
 
 ### Additional Notes for the project
 
--  **Postalcode:** Stored thisas a string to accommodate alphanumeric postal codes in various countries.
+-  **Postal code:** Stored as a string to accommodate alphanumeric postal codes in various countries.
 -  **Phone:** Accepts only numbers and dashes.
 -  **Country List:** Although the country list can be fetched via API, a pre-downloaded JSON list is used as to not over-complicate.
 
 --
 
--  **Redux:** The app doesn't implement Redux, keeping the scope straightforward. Overengineering is avoided for simplicity and efficiency.
+-  **Redux:** The app doesn't implement Redux, keeping the scope straightforward. Over-engineering is avoided for simplicity and efficiency.
 -  **Database:** SQLite is used to keep things simple. It's free and effective for this activity.
 -  **File Upload:** For simplicity, file uploads are implemented using base64 strings. This is to ensure that this app can serve as standalone. Best practice should still involve server-side upload and served via URL. The maximum file size allowed is 5MB in order to to keep the database unbloated.
--  **Environment Variables (.env):** While it's not recommended to push .env files, it's done here for ease of running the app. In a production environment, it's advisable to obtain sensitive information from either teammates or through a password vault.
-- **Form Validation:** The validation is generally strict at this point. While a real-world application might involve numerous combinations and fine-tuning, for the purpose of this activity, implementation robust yet straightforward.
+-  **Environment Variables (.env):** While it's not recommended to push .env files, it's done here for ease of running the app. In a production environment, it's advisable to obtain this through your teammates or a password vault.
+- **Form Validation:** The validation is generally strict at this point. While a real-world application might involve numerous combinations and fine-tuning, for the purpose of this activity, implementation is kept leveled yet straightforward.
 
 
 --
