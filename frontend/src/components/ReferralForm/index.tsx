@@ -88,13 +88,17 @@ const ReferralForm = () => {
     let isAtLeastOneAnswer = false;
   
     const answeredRequiredFields = keyObjects.filter(key => {
-      const isNotEmpty = formData[key as keyof IReferralData] !== '';
+      const currentField = formData[key as keyof IReferralData];
+      const isNotEmpty = currentField !== '';
       if(!isAtLeastOneAnswer && isNotEmpty) isAtLeastOneAnswer = true;
 
+      console.log("currentField = ", currentField)
+
       // Exclude suburb from the check
-      if (OPTIONAL_FIELDS.includes(key)) {
-        return false;
-      }
+      if (OPTIONAL_FIELDS.includes(key)) return false;
+
+      // Ensure phone number is at least 3 numbers
+      if (key === "phone" && currentField.length < 3) return false;
 
       // Check if the value is not an empty string
       return isNotEmpty;
