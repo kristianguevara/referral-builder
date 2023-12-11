@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import Home from './components/Home';
 import ReferralForm from './components/ReferralForm';
+import NotFound from "./components/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/edit/:id",
     element: <ReferralForm />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
