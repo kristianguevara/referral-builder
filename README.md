@@ -1,8 +1,11 @@
 
 ## Welcome to the Fullstack Referral App!
-
+A simple CRUD app
 
 ## 1. Installation
+
+**Firstly**, clone this repo - `git clone https://github.com/kristianguevara/referral-builder.git`
+
 For this app, you need to have 2 terminals open - one for frontend and the other for backend
 
 **Window 1** - Head to `frontend/` and do `npm install`
@@ -12,20 +15,25 @@ For this app, you need to have 2 terminals open - one for frontend and the other
 That's it! No more complicating setup along  the way. 
 
 
-## 2. Running the app simultaneously
+## 2. Running the app
 
-**Window 1** - On `frontend/`, run `npm start`
+### Run the backend first before frontend
 
-**Window 2**
- - On `backend/`, run first `npm run build` in order to create an initial transpile
- - Then run `npm run dev` to boot the server.
+**Backend Terminal**
+- On `backend/`, run first `npm run build` in order to create an initial transpile
+- Then run `npm run dev` to boot the server.
 
-**Note:**: The database will be automatically created when you run the backend, eliminating the need for manual configuration.
+**Frontend Terminal**
+- On `frontend/`, simply run `npm start`
 
-**Permission Note:** In case you are dealing with directory ownership issues on your machine, ensure you own the folder by doing the following inside the `referral-builder/` folder:
+**Permission Note:** By any chance you are encountering `Error: EACCES: permission denied,`, ensure you own the folder by doing the following inside the `referral-builder/` folder:
 1. `sudo chown -R $(whoami) .` - This command changes the ownership of the current directory and all its subdirectories to the current user.
 2. `chmod -R 777 .` - This command changes the permissions of the current directory and all its subdirectories to allow read, write, and execute for the owner only.
 
+
+**Note:**: The database will be automatically created when you run the backend, eliminating the need for manual configuration.
+
+--
 
 ### Additional Notes for the project
 
