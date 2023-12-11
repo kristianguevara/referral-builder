@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
 import { CardHeader } from '@mui/material';
@@ -14,11 +13,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { REFERRAL_API_URL, REFERRALS_API_URL } from "../../utils/constants";
 import { IReferralListData } from '../../interfaces';
 import LoadingDashboard from './LoadingDashboard';
 import EmptyList from './EmptyList';
 import DeleteModal from "./DeleteModal";
+import { getReferrals, deleteReferral } from "../../services";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ const Dashboard = () => {
 
   const handleDeleteConfirmation = async (referral: IReferralListData) => {
     try {
-      await axios.delete(REFERRAL_API_URL + `/${referral.id}`);
+      await deleteReferral(referral.id);
       setReferralList(referralList.filter(rl => rl.id !== referral.id));
       success("Referral successfully deleted.")
     } catch (e) {
@@ -45,7 +44,7 @@ const Dashboard = () => {
     setIsModalOpen(false);
   };
 
-  const deleteReferral = (referral: IReferralListData) => {
+  const deleteReferralClick = (referral: IReferralListData) => {
     setSelectedReferal(referral);
     setIsModalOpen(true);
   }
@@ -53,7 +52,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getReferralList = async () => {
       try {
-        const result = await axios.get(REFERRALS_API_URL);
+        const result = await getReferrals();
         const { data } = result;
         if (data.error) {
           error('Failed to fetch List. Kindly reload the page.');
@@ -106,7 +105,7 @@ const Dashboard = () => {
                   <EditIcon sx={{ mr: "10px", cursor: "pointer" }} onClick={() => navigate(`/edit/${referral.id}`)}/>
                 </Tooltip>
                 <Tooltip title="Delete" placement="top">
-                  <DeleteIcon sx={{ cursor: "pointer" }} onClick={() => deleteReferral(referral)} />
+                  <DeleteIcon sx={{ cursor: "pointer" }} onClick={() => deleteReferralClick(referral)} />
                 </Tooltip>
               </TableCell>
             </TableRow>

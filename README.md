@@ -52,7 +52,7 @@ That's it! No more complicating setup along  the way.
 
 --
 - **Typescript Definitions and TS Rulings:** While most types are fully defined, there are custom objects that need better definition, so "any" was used to cover those cases. It may not be practical to create meticulous definitions for every custom object in the context of this activity. Similar to the given Typescript ruling, some types are best ignored in order to prioritize simplicity and avoid unnecessary complexity, especially given the straightforward nature of the application.
-- **Backend authentication** - CORS limits the access only through our frontend app. Hitting Postman ain't accessible as well. Although there are other implementations to further secure the backend, similar to the above reasons, the implementation is done with simplicity in mind to maintain a straightforward setup.
+- **Backend authentication** - CORS limits the access only through our frontend app, as well as our defined API key. Hitting Postman ain't accessible as well. Although there are other implementations to further secure the backend, similar to the above reasons, the implementation is done with simplicity in mind to maintain a straightforward setup.
 
 
 ##### Overall, this app was finished on approximately 10 hours. Hours don't account the pauses in-between.

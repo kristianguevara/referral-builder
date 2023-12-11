@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -10,9 +10,10 @@ import { toast } from 'react-toastify';
 import ReferralInputForm from "./ReferralInputForm";
 import PreviewReferralForm from "./PreviewReferralForm";
 import ConfirmCancelModal from "./ConfirmCancelModal";
+import { createReferral, updateReferral, getReferralById } from "../../services";
 import { validateEmail, validatePhone } from "../../utils";
 import { IReferralData } from '../../interfaces';
-import { OPTIONAL_FIELDS, REFERRAL_API_URL } from "../../utils/constants";
+import { OPTIONAL_FIELDS } from "../../utils/constants";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -55,7 +56,13 @@ const ReferralForm = () => {
   useEffect(() => {
     const getReferralData = async () => {
       try {
-        const result = await axios.get(`${REFERRAL_API_URL}/${id}`);
+        if (!id) {
+          error('Invalid referral. Redirecting to home page...');
+          redirectToHome();
+          return;
+        }
+
+        const result = await getReferralById(id);
         const fetchedData = result.data;
 
         if (!fetchedData) {
@@ -143,19 +150,9 @@ const ReferralForm = () => {
       let result: AxiosResponse<any, any>;
   
       if (isEditPage) {
-        result = await axios.put(REFERRAL_API_URL, formData,
-          {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
+        result = await updateReferral(formData);
       } else {
-        result = await axios.post(REFERRAL_API_URL, formData,
-          {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
+        result = await createReferral(formData);
       }
 
       const { data } = result;

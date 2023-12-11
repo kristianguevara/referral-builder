@@ -1,4 +1,6 @@
 export const BASE_API_URL = process.env.REACT_APP_API_BASE_URL;
+export const API_KEY = process.env.REACT_APP_API_KEY;
+
 export const REFERRAL_PREFIX = 'referral';
 export const REFERRALS_PREFIX = 'referrals';
 export const REFERRAL_API_URL = `${BASE_API_URL}/${REFERRAL_PREFIX}`;
