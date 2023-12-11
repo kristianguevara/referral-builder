@@ -8,24 +8,30 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import { ICreateReferralFormData } from '../../interfaces';
+import { IReferralInputFormData } from '../../interfaces';
 import { COUNTRIES } from '../../utils/constants';
 
-const CreateReferralForm: FC<ICreateReferralFormData> = ({
+const ReferralInputForm: FC<IReferralInputFormData> = ({
     formData,
-    handleFormChange
+    disabled,
+    handleFormChange,
+    submitForm,
+    isEditPage
 }) => {
   const {
-    givenName,
-    surName,
-    homeName,
+    given_name,
+    surname,
+    email,
+    phone,
+    home_name,
     street,
     suburb,
     state,
     postcode,
-    country,
-    avatar
+    country
   } = formData;
+
+  const actionWord = isEditPage ? "EDIT" : "CREATE";
 
   return (
     <Box sx={{ padding: 1 }}>
@@ -40,13 +46,13 @@ const CreateReferralForm: FC<ICreateReferralFormData> = ({
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="givenName"
-            name="givenName"
+            id="given_name"
+            name="given_name"
             label="GIVEN NAME"
             fullWidth
             autoComplete="given-name"
             variant="outlined"
-            value={givenName}
+            value={given_name}
             onChange={(e) => handleFormChange(e)}
           />
         </Grid>
@@ -54,12 +60,40 @@ const CreateReferralForm: FC<ICreateReferralFormData> = ({
           <TextField
             required
             id="surname"
-            name="surName"
+            name="surname"
             label="SURNAME"
             fullWidth
             autoComplete="surname"
             variant="outlined"
-            value={surName}
+            value={surname}
+            onChange={(e) => handleFormChange(e)}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={3} mt="10px">
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="email"
+            name="email"
+            label="EMAIL"
+            fullWidth
+            autoComplete="email"
+            variant="outlined"
+            value={email}
+            onChange={(e) => handleFormChange(e)}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="phone"
+            name="phone"
+            label="PHONE"
+            fullWidth
+            autoComplete="phone"
+            variant="outlined"
+            value={phone}
             onChange={(e) => handleFormChange(e)}
           />
         </Grid>
@@ -72,13 +106,13 @@ const CreateReferralForm: FC<ICreateReferralFormData> = ({
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="homeName"
-            name="homeName"
+            id="home_name"
+            name="home_name"
             label="HOME NAME OR #"
             fullWidth
-            autoComplete="homeName"
+            autoComplete="home_name"
             variant="outlined"
-            value={homeName}
+            value={home_name}
             onChange={(e) => handleFormChange(e)}
           />
         </Grid>
@@ -104,6 +138,7 @@ const CreateReferralForm: FC<ICreateReferralFormData> = ({
             autoComplete="suburb"
             variant="outlined"
             value={suburb}
+            onChange={(e) => handleFormChange(e)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -134,8 +169,9 @@ const CreateReferralForm: FC<ICreateReferralFormData> = ({
         </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
-            <InputLabel id="country-select-label">Country</InputLabel>
+            <InputLabel id="country-select-label">COUNTRY*</InputLabel>
             <Select
+              required
               labelId="country-select-label"
               value={country}
               name="country"
@@ -169,7 +205,7 @@ const CreateReferralForm: FC<ICreateReferralFormData> = ({
               reader.readAsDataURL(file);
           }}
             id="img-button-file"
-            style={{ display: 'none', }}
+            style={{ display: 'none' }}
           />
           <label htmlFor="img-button-file">
             <Button
@@ -178,20 +214,20 @@ const CreateReferralForm: FC<ICreateReferralFormData> = ({
               variant="outlined"
               sx={{ float: "right", mb: "20px", height:"55px" }}
               >
-                UPLOAD AVATAR
+                UPLOAD AVATAR*
             </Button>
           </label>
         </Grid>
         <Grid item xs={12} sm={6}>
           <Button
-            disabled={!avatar}
+            disabled={disabled}
             fullWidth
             color="success"
             variant="contained"
             sx={{ float: "right", mb: "20px", height:"55px" }}
-            onClick={() => {}}
+            onClick={() => submitForm()}
             >
-              CREATE REFERRAL
+              {actionWord} REFERRAL
           </Button>
         </Grid>
       </Grid>
@@ -199,4 +235,4 @@ const CreateReferralForm: FC<ICreateReferralFormData> = ({
   );
 }
 
-export default CreateReferralForm;
+export default ReferralInputForm;

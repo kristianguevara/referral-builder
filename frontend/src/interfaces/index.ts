@@ -1,9 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export interface ICreateFormData {
-  givenName: string;
-  surName: string;
-  homeName: string;
+export interface IReferralData {
+  given_name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  home_name: string;
   street: string;
   suburb: string;
   state: string;
@@ -12,12 +14,19 @@ export interface ICreateFormData {
   avatar: string;
 }
 
-export interface IPreviewReferralFormData {
-  formData: ICreateFormData;
+export interface IReferralListData extends IReferralData {
+  id: number;
 }
 
-export interface ICreateReferralFormData {
-  formData: ICreateFormData;
+export interface IPreviewReferralFormData {
+  formData: IReferralData;
+}
+
+export interface IReferralInputFormData {
+  isEditPage: boolean;
+  formData: IReferralData;
   handleFormChange: Function;
+  disabled: boolean;
+  submitForm: Function;
 }
 

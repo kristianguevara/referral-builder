@@ -2,7 +2,7 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import Home from './components/Home';
-import CreateReferral from './components/CreateReferral';
+import ReferralForm from './components/ReferralForm';
 
 const router = createBrowserRouter([
   {
@@ -11,7 +11,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/create",
-    element: <CreateReferral />,
+    element: <ReferralForm />,
+  },
+  {
+    path: "/edit/:id",
+    element: <ReferralForm />,
   },
 ]);
 

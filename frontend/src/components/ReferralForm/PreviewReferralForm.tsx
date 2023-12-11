@@ -8,9 +8,11 @@ const PreviewReferralForm: FC<IPreviewReferralFormData> = ({
     formData,
 }) => {
   const {
-    givenName,
-    surName,
-    homeName,
+    given_name,
+    surname,
+    email,
+    phone,
+    home_name,
     street,
     suburb,
     state,
@@ -25,12 +27,14 @@ const PreviewReferralForm: FC<IPreviewReferralFormData> = ({
 
       <Typography variant="h5" align="left">Personal Details</Typography>
       <hr />
-      <Typography align="left">Given name: {givenName} </Typography>
-      <Typography align="left">Surname: {surName}</Typography>
+      <Typography align="left">Given name: {given_name} </Typography>
+      <Typography align="left">Surname: {surname}</Typography>
+      <Typography align="left">Email: {email} </Typography>
+      <Typography align="left">phone: {phone}</Typography>
 
       <Typography variant="h5" align="left" mt="15px">Address </Typography>
       <hr />
-      <Typography align="left">Home name / #: {homeName}</Typography>
+      <Typography align="left">Home name / #: {home_name}</Typography>
       <Typography align="left">Street: {street}</Typography>
       <Typography align="left">Suburb: {suburb}</Typography>
       <Typography align="left">State: {state}</Typography>

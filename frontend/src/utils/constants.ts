@@ -1,3 +1,11 @@
+export const BASE_API_URL = 'http://localhost:8001/api';
+export const REFERRAL_PREFIX = 'referral';
+export const REFERRALS_PREFIX = 'referrals';
+export const REFERRAL_API_URL = `${BASE_API_URL}/${REFERRAL_PREFIX}`;
+export const REFERRALS_API_URL = `${BASE_API_URL}/${REFERRALS_PREFIX}`
+
+export const OPTIONAL_FIELDS = ['suburb'];
+
 export const COUNTRIES = [ 
   {name: 'Afghanistan', code: 'AF'}, 
   {name: 'Åland Islands', code: 'AX'}, 
