@@ -13,8 +13,7 @@ referralRouter.get("/:id", async (req: Request, res: Response) => {
 
     const db = await getDBObject();
     const rc = await db.models.Referrals.findOne({ where: { id } });
-    console.log("rc = ", rc)
-  return res.status(200).send(rc);
+    return res.status(200).send(rc);
   } catch (error) {
     console.error('Error fetching referral:', error);
     return res.status(500).send({ error });
@@ -40,7 +39,7 @@ referralRouter.delete("/:id", async (req: Request, res: Response) => {
 referralRouter.post("/", async (req: Request, res: Response) => {
   try {
     const { body } = req;
-    console.log("body = ", body)
+    console.log("post body = ", body)
 
     const db = await getDBObject();
     await db.models.Referrals.create(body);
@@ -54,7 +53,7 @@ referralRouter.post("/", async (req: Request, res: Response) => {
 referralRouter.put("/", async (req: Request, res: Response) => {
   try {
     const { body } = req;
-    console.log("body = ", body)
+    console.log("put body = ", body)
 
     const db = await getDBObject();
     await db.models.Referrals.update(body, {

@@ -57,7 +57,7 @@ const ReferralForm = () => {
       try {
         const result = await axios.get(`${REFERRAL_API_URL}/${id}`);
         const fetchedData = result.data;
-        console.log("fetchedData = ", fetchedData)
+
         if (!fetchedData) {
           error('Referral not existing. Redirecting to home page...');
           redirectToHome();
@@ -91,8 +91,6 @@ const ReferralForm = () => {
       const currentField = formData[key as keyof IReferralData];
       const isNotEmpty = currentField !== '';
       if(!isAtLeastOneAnswer && isNotEmpty) isAtLeastOneAnswer = true;
-
-      console.log("currentField = ", currentField)
 
       // Exclude suburb from the check
       if (OPTIONAL_FIELDS.includes(key)) return false;
