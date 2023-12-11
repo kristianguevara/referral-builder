@@ -43,4 +43,4 @@ That's it! No more complicating setup along  the way.
 - **Backend authentication** - CORS limits the access only through our frontend app. Although there are other implementations to further secure the backend, similar to the above reasons, the implementation is done with simplicity in mind to maintain a straightforward setup.
 
 
-##### Overall, this app was finished on approximately 10 hours. Hours do not account pauses in-between.
+##### Overall, this app was finished on approximately 10 hours. Hours don't account the pauses in-between.
