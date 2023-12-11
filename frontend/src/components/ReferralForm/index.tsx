@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import { toast } from 'react-toastify';
 import ReferralInputForm from "./ReferralInputForm";
 import PreviewReferralForm from "./PreviewReferralForm";
-import { validateEmail } from "../../utils";
+import { validateEmail, validatePhone } from "../../utils";
 import { IReferralData } from '../../interfaces';
 import { OPTIONAL_FIELDS, REFERRAL_API_URL } from "../../utils/constants";
 
@@ -159,12 +159,21 @@ const ReferralForm = () => {
     const fieldName = event.target.name;
     
     if (type === "image") {
+      const target = event.target
+      const maxAllowedSize = 5 * 1024 * 1024; // Max 5MB only since we're using base64 and to not overload the db.
+      if (target.files !== null && target.files[0].size > maxAllowedSize) {
+          error("Your file must not exceed 5MB.")
+          return;
+      }
+  
       setFormData({
         ...formData,
         [fieldName]: fileValue
       });
     } else {
       const fieldValue = event.target.value;
+      if (fieldName === "phone" && !validatePhone(fieldValue)) return;
+      
       setFormData({
         ...formData,
         [fieldName]: fieldValue

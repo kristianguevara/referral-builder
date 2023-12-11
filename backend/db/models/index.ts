@@ -1,43 +1,62 @@
 import { Sequelize, DataTypes } from "Sequelize";
 
 const defineModels = (sequelize: Sequelize) => {
-  const ResearchConfigurations = sequelize.define('research_configurations', {
+  const Referrals = sequelize.define('referrals', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    company_name: DataTypes.STRING,
-    company_url: DataTypes.STRING,
-  });
-
-  const ResearchConfigurationQuestions = sequelize.define('research_configuration_questions', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false
+    given_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    research_configuration_id: DataTypes.NUMBER,
-    question: DataTypes.STRING,
-  });
-
-  const ResearchConfigurationSources = sequelize.define('research_configuration_sources', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false
+    surname: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    research_configuration_id: DataTypes.NUMBER,
-    source: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    home_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    street: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    suburb: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    postcode: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    avatar: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   });
 
   return {
-    ResearchConfigurations,
-    ResearchConfigurationQuestions,
-    ResearchConfigurationSources
+    Referrals
   }
 };
 

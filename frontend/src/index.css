@@ -3,3 +3,9 @@ html, body, #root {
   height: 100%;
   font-family: monospace;
 }
+
+#home-dashboard th,
+#home-dashboard td,
+#home-dashboard span {
+  font-size: 15px;
+}

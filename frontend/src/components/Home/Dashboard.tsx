@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Tooltip from '@mui/material/Tooltip';
+import Avatar from '@mui/material/Avatar';
+import { CardHeader } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -64,7 +66,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer id="home-dashboard" component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="Referrals table">
         <TableHead>
           <TableRow>
@@ -84,7 +86,12 @@ const Dashboard = () => {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {referral.given_name}
+              <CardHeader
+                avatar={
+                  <Avatar src={referral.avatar} />
+                }
+                title={referral.given_name}
+              />
               </TableCell>
               <TableCell align="right">{referral.surname}</TableCell>
               <TableCell align="right">{referral.email}</TableCell>

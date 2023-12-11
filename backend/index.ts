@@ -1,16 +1,23 @@
-import express, { Request, Response } from 'express';
-import { getDBObject } from './db';
+import express from 'express';
+import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import referralRouter from './routers/referralRouter';
+import referralsRouter from './routers/referralsRouter';
 
-// Create an Express application
+dotenv.config();
 const app = express();
-const port = 8001;
+const port = process.env.PORT;
 
-// Define a simple endpoint
-app.get('/', async (req: Request, res: Response) => {
-  const db = await getDBObject();
-  const rc = await db.models.ResearchConfigurations.findAll();
-  res.send(rc);
-});
+// Setup middleware
+app.use(cors({
+  origin: process.env.FRONTEND_BASE_URL
+}));
+app.use(bodyParser.json({limit: '5mb'}));
+
+app.use('/api/referral', referralRouter);
+app.use('/api/referrals', referralsRouter);
+
 
 // Start the server
 app.listen(port, () => {

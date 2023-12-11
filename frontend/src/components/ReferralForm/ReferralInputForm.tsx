@@ -180,7 +180,7 @@ const ReferralInputForm: FC<IReferralInputFormData> = ({
             >
               {COUNTRIES.map((c, idx) => {
                 return (
-                  <MenuItem key={`${c.code}-${idx}`} value={c.name}>{c.name}</MenuItem>
+                  <MenuItem key={`${c.code}-${idx.toString()}`} value={c.name}>{c.name}</MenuItem>
                 )
               })}
             </Select>
@@ -199,10 +199,11 @@ const ReferralInputForm: FC<IReferralInputFormData> = ({
               const file = e.target.files[0];
           
               reader.onload = (upload) => {
-                if (!upload.target || !upload.target.result) return;
+                if (!upload?.target?.result) return;
                 handleFormChange(e, "image", upload.target.result);
               };
-              reader.readAsDataURL(file);
+
+              if (file) reader.readAsDataURL(file);
           }}
             id="img-button-file"
             style={{ display: 'none' }}

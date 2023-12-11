@@ -1,8 +1,8 @@
-export const BASE_API_URL = 'http://localhost:8001/api';
+export const BASE_API_URL = process.env.REACT_APP_API_BASE_URL;
 export const REFERRAL_PREFIX = 'referral';
 export const REFERRALS_PREFIX = 'referrals';
 export const REFERRAL_API_URL = `${BASE_API_URL}/${REFERRAL_PREFIX}`;
-export const REFERRALS_API_URL = `${BASE_API_URL}/${REFERRALS_PREFIX}`
+export const REFERRALS_API_URL = `${BASE_API_URL}/${REFERRALS_PREFIX}`;
 
 export const OPTIONAL_FIELDS = ['suburb'];
 

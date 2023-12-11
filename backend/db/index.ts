@@ -10,7 +10,7 @@ const createDbConnection = async () => {
   });
 
   const models = defineModels(sequelize);
-  await sequelize.sync({ force: true });
+  await sequelize.sync();
 
   return {
     sequelize,
