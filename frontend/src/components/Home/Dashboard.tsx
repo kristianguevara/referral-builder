@@ -67,6 +67,7 @@ const Dashboard = () => {
       setIsLoading(false);
     }
     getReferralList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
