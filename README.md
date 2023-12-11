@@ -2,17 +2,20 @@
 ## Welcome to the Fullstack Referral App!
 
 
-### 1. Installation
+## 1. Installation
 For this app, you need to have 2 terminals open - one for frontend and the other for backend
 
 **Window 1** - Head to `frontend/` and do `npm install`
+
 **Window 2** - Head to `backend/` and do `npm install`
 
 That's it! No more complicating setup along  the way. 
 
-### 2. Running the app simultaneously
+
+## 2. Running the app simultaneously
 
 **Window 1** - On `frontend/` , `npm run start`
+
 **Window 2** - On `backend/` , `npm run dev`
 
 **Note**: The database will be automatically created when you run the backend, eliminating the need for manual configuration.
