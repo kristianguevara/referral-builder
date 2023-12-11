@@ -14,9 +14,9 @@ That's it! No more complicating setup along  the way.
 
 ## 2. Running the app simultaneously
 
-**Window 1** - On `frontend/` , `npm run start`
+**Window 1** - On `frontend/`, run `npm run start`
 
-**Window 2** - On `backend/` , `npm run dev`
+**Window 2** - On `backend/`, run `npm run dev`
 
 **Note**: The database will be automatically created when you run the backend, eliminating the need for manual configuration.
 
@@ -34,4 +34,4 @@ That's it! No more complicating setup along  the way.
 - **Backend authentication** - CORS limits the access only through our frontend app. Although there are other implementations to further secure the backend, similar to the above reasons, the implementation is done with simplicity in mind to maintain a straightforward setup.
 
 
-##### Overall, this app is completed around 10 hours.
+##### Overall, this app was finished on approximately 10 hours. Hours do not account pauses in-between.
