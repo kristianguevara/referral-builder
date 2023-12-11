@@ -29,6 +29,8 @@ That's it! No more complicating setup along  the way.
 -  **Phone:** Accepts only numbers and dashes.
 -  **Country List:** Although the country list can be fetched via API, a pre-downloaded JSON list is used as to not over-complicate.
 
+--
+
 -  **Redux:** The app doesn't implement Redux, keeping the scope straightforward. Overengineering is avoided for simplicity and efficiency.
 -  **Database:** SQLite is used to keep things simple. It's free and effective for this activity.
 -  **File Upload:** For simplicity, file uploads are implemented using base64 strings. This is to ensure that this app can serve as standalone. Best practice should still involve server-side upload and served via URL. The maximum file size allowed is 5MB in order to to keep the database unbloated.
